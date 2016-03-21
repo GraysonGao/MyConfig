@@ -1,0 +1,23 @@
+[
+    // vintage use k,k to replace esc
+    { "keys": ["k", "k"], "command": "exit_insert_mode",
+        "context":
+        [
+            { "key": "setting.command_mode", "operand": false },
+            { "key": "setting.is_widget", "operand": false }
+        ]
+    },
+    { "keys": ["alt+l"], "command": "move", "args": {"by": "characters", "forward": false}},
+    { "keys": ["alt+h"], "command": "move", "args": {"by": "characters", "forward": false}},
+    { "keys": ["alt+j"], "command": "move", "args": {"by": "characters", "forward": false}},
+    { "keys": ["alt+k"], "command": "move", "args": {"by": "characters", "forward": false}},
+    // eclipse
+    { "keys": ["alt+/"], "command": "auto_complete" },
+    { "keys": ["alt+/"], "command": "replace_completion_with_auto_complete", "context":
+       [
+            { "key": "last_command", "operator": "equal", "operand": "insert_best_completion" },
+            { "key": "auto_complete_visible", "operator": "equal", "operand": false },
+            { "key": "setting.tab_completion", "operator": "equal", "operand": true }
+        ]
+    }
+]
