@@ -1,0 +1,46 @@
+// 将设置放入此文件中以覆盖默认设置
+{
+    // 启用后，将在新窗口中打开文件，而不是重复使用现有实例。
+    "window.openFilesInNewWindow": false,
+    // 控制字体大小。
+    "editor.fontSize": 16,
+    "editor.wrappingColumn": 120,
+    "files.autoSave": "afterDelay",
+    "files.autoSaveDelay": 5,
+    "editor.renderWhitespace": "boundary",
+    "editor.wordWrap": true,
+    "editor.renderLineHighlight": "gutter",
+    "window.showFullPath": true,
+    // vim settings
+    "vim.insertModeKeyBindings": [
+        {
+            "before": [
+                "k",
+                "k"
+            ],
+            "after": [
+                "<Esc>"
+            ]
+        }
+    ],
+    "vim.useCtrlKeys": false,
+    "vim.useSystemClipboard": true,
+    "vim.leader": ".",
+    "vim.otherModesKeyBindingsNonRecursive": [
+        {
+            "before": [
+                "leader",
+                "w"
+            ],
+            "after": [],
+            "commands": [
+                {
+                    "command": "workbench.action.files.save",
+                    "args": []
+                }
+            ]
+        }
+    ],
+    "vim.hlsearch": true,
+    "vim.textwidth": 120
+}

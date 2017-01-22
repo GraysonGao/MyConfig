@@ -1,0 +1,83 @@
+// 将键绑定放入此文件中以覆盖默认值
+[
+    {
+        "key": "alt+p",
+        "command": "workbench.action.showCommands"
+    },
+    {
+        "key": "ctrl+enter",
+        "command": "editor.action.insertLineBefore",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "shift+enter",
+        "command": "editor.action.insertLineAfter",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "alt+/",
+        "command": "editor.action.triggerSuggest",
+        "when": "editorHasCompletionItemProvider && editorTextFocus && !editorReadonly"
+    },
+    // vim settings
+    {
+        "key": "alt+h",
+        "command": "cursorLeft",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "alt+l",
+        "command": "cursorRight",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "alt+j",
+        "command": "cursorDown",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "alt+j",
+        "command": "selectNextSuggestion",
+        "when": "editorTextFocus && suggestWidgetMultipleSuggestions && suggestWidgetVisible"
+    },
+    {
+        "key": "alt+j",
+        "command": "showNextParameterHint",
+        "when": "editorTextFocus && parameterHintsMultipleSignatures && parameterHintsVisible"
+    },
+    {
+        "key": "alt+j",
+        "command": "repl.action.historyNext",
+        "when": "editorTextFocus && inDebugRepl && onLastDebugReplLine"
+    },
+    {
+        "key": "alt+j",
+        "command": "search.focus.nextInputBox",
+        "when": "inputBoxFocus && searchViewletVisible"
+    },
+    {
+        "key": "alt+k",
+        "command": "cursorUp",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "alt+k",
+        "command": "selectPrevSuggestion",
+        "when": "editorTextFocus && suggestWidgetMultipleSuggestions && suggestWidgetVisible"
+    },
+    {
+        "key": "alt+k",
+        "command": "showPrevParameterHint",
+        "when": "editorTextFocus && parameterHintsMultipleSignatures && parameterHintsVisible"
+    },
+    {
+        "key": "alt+k",
+        "command": "repl.action.historyPrevious",
+        "when": "editorTextFocus && inDebugRepl && onLastDebugReplLine"
+    },
+    {
+        "key": "alt+k",
+        "command": "search.focus.previousInputBox",
+        "when": "inputBoxFocus && searchViewletVisible"
+    }
+]
