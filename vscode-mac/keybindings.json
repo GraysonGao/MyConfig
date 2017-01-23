@@ -1,8 +1,12 @@
 // 将键绑定放入此文件中以覆盖默认值
 [
     {
-        "key": "alt+p",
+        "key": "cmd+p",
         "command": "workbench.action.showCommands"
+    },
+    {
+        "key": "cmd+'",
+        "command": "workbench.action.quickOpen"
     },
     {
         "key": "cmd+enter",
