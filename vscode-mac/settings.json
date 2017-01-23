@@ -1,0 +1,47 @@
+// 将设置放入此文件中以覆盖默认设置
+{
+    // 控制字体大小。
+    "editor.fontSize": 14,
+    "editor.wrappingColumn": 120,
+    "files.autoSave": "afterDelay",
+    "files.autoSaveDelay": 5,
+    "editor.renderWhitespace": "boundary",
+    "editor.wordWrap": true,
+    "editor.renderLineHighlight": "gutter",
+    "window.showFullPath": true,
+    "files.associations": {
+        "*.html": "html"
+    },
+    // vim settings
+    "vim.insertModeKeyBindings": [
+        {
+            "before": [
+                "k",
+                "k"
+            ],
+            "after": [
+                "<Esc>"
+            ]
+        }
+    ],
+    "vim.useCtrlKeys": false,
+    "vim.useSystemClipboard": true,
+    "vim.leader": ".",
+    "vim.otherModesKeyBindingsNonRecursive": [
+        {
+            "before": [
+                "leader",
+                "w"
+            ],
+            "after": [],
+            "commands": [
+                {
+                    "command": "workbench.action.files.save",
+                    "args": []
+                }
+            ]
+        }
+    ],
+    "vim.hlsearch": true,
+    "vim.textwidth": 120
+}
