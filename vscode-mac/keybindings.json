@@ -5,7 +5,7 @@
         "command": "workbench.action.showCommands"
     },
     {
-        "key": "cmd+'",
+        "key": "cmd+;",
         "command": "workbench.action.quickOpen"
     },
     {
@@ -19,68 +19,68 @@
         "when": "editorTextFocus"
     },
     {
-        "key": "alt+/",
+        "key": "cmd+/",
         "command": "editor.action.triggerSuggest",
         "when": "editorHasCompletionItemProvider && editorTextFocus && !editorReadonly"
     },
     // vim settings
     {
-        "key": "alt+h",
+        "key": "cmd+h",
         "command": "cursorLeft",
         "when": "editorTextFocus"
     },
     {
-        "key": "alt+l",
+        "key": "cmd+l",
         "command": "cursorRight",
         "when": "editorTextFocus"
     },
     {
-        "key": "alt+j",
+        "key": "cmd+j",
         "command": "cursorDown",
         "when": "editorTextFocus"
     },
     {
-        "key": "alt+j",
+        "key": "cmd+j",
         "command": "selectNextSuggestion",
         "when": "editorTextFocus && suggestWidgetMultipleSuggestions && suggestWidgetVisible"
     },
     {
-        "key": "alt+j",
+        "key": "cmd+j",
         "command": "showNextParameterHint",
         "when": "editorTextFocus && parameterHintsMultipleSignatures && parameterHintsVisible"
     },
     {
-        "key": "alt+j",
+        "key": "cmd+j",
         "command": "repl.action.historyNext",
         "when": "editorTextFocus && inDebugRepl && onLastDebugReplLine"
     },
     {
-        "key": "alt+j",
+        "key": "cmd+j",
         "command": "search.focus.nextInputBox",
         "when": "inputBoxFocus && searchViewletVisible"
     },
     {
-        "key": "alt+k",
+        "key": "cmd+k",
         "command": "cursorUp",
         "when": "editorTextFocus"
     },
     {
-        "key": "alt+k",
+        "key": "cmd+k",
         "command": "selectPrevSuggestion",
         "when": "editorTextFocus && suggestWidgetMultipleSuggestions && suggestWidgetVisible"
     },
     {
-        "key": "alt+k",
+        "key": "cmd+k",
         "command": "showPrevParameterHint",
         "when": "editorTextFocus && parameterHintsMultipleSignatures && parameterHintsVisible"
     },
     {
-        "key": "alt+k",
+        "key": "cmd+k",
         "command": "repl.action.historyPrevious",
         "when": "editorTextFocus && inDebugRepl && onLastDebugReplLine"
     },
     {
-        "key": "alt+k",
+        "key": "cmd+k",
         "command": "search.focus.previousInputBox",
         "when": "inputBoxFocus && searchViewletVisible"
     }

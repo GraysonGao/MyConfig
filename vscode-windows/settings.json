@@ -25,7 +25,7 @@
     ],
     "vim.useCtrlKeys": false,
     "vim.useSystemClipboard": true,
-    "vim.leader": ".",
+    "vim.leader": ";",
     "vim.otherModesKeyBindingsNonRecursive": [
         {
             "before": [
