@@ -1,0 +1,5 @@
+inoremap kk <Esc>
+inoremap <m-h> <Left>
+inoremap <m-j> <Down>
+inoremap <m-k> <Up>
+inoremap <m-l> <Right>
