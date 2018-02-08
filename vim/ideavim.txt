@@ -1,1 +1,8 @@
 在用户目录下新建文件: .ideavimrc
+然后添加如下代码:
+inoremap kk <Esc>
+vnoremap p "_dP
+imap <m-h> <Left>
+imap <m-j> <Down>
+imap <m-k> <Up>
+imap <m-l> <Right>
