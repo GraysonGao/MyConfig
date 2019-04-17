@@ -1,17 +1,91 @@
-// 将设置放入此文件中以覆盖默认设置
 {
-    // 启用后，将在新窗口中打开文件，而不是重复使用现有实例。
-    "window.openFilesInNewWindow": false,
-    // 控制字体大小。
+    /* ---- 编辑器 begin ---- */
+    // 字体大小。
     "editor.fontSize": 16,
-    "editor.wrappingColumn": 120,
-    "files.autoSave": "afterDelay",
-    "files.autoSaveDelay": 5,
+    // 禁止 drag and drop
+    "editor.dragAndDrop": false,
+    "explorer.confirmDragAndDrop": false,
+    // 显示空白字符
     "editor.renderWhitespace": "boundary",
-    "editor.wordWrap": true,
+    // 控制折行方式, 在视区宽度 和 wordWrapColumn 中选择较小的..
+    "editor.wordWrap": "bounded",
+    // 折行宽度
+    "editor.wordWrapColumn": 120,
+    // 代码自动折行后进行缩进
+    "editor.wrappingIndent": "indent",
+    // 当前行的高亮方式, 只显示左侧导航线
     "editor.renderLineHighlight": "gutter",
-    "window.showFullPath": true,
-    // vim settings
+    // 默认在选中文本中查找
+    "editor.find.autoFindInSelection": true,
+    // 不显示小地图
+    "editor.minimap.enabled": false,
+    // 代码提示延迟时长
+    "editor.quickSuggestionsDelay": 100,
+    // 在资源管理器中移除文件时是否弹出确认框
+    "explorer.confirmDelete": false,
+    // 显示面包屑
+    "breadcrumbs.enabled": true,
+    // 默认窗口最大化
+    "window.newWindowDimensions": "maximized",
+    // 打开的文件被别的应用删除时, 自动关闭文件
+    "workbench.editor.closeOnFileDelete": true,
+    /* ---- 窗口和工作区 end ---- */
+
+    /* ---- 文件 begin ---- */
+    // 自动保存, 当窗口失去焦点时保存
+    "files.autoSave": "onWindowChange",
+    // 自动检测编码
+    "files.autoGuessEncoding": true,
+    // 大文件最大可用内存
+    "files.maxMemoryForLargeFilesMB": 2048,
+    /* ---- 文件 end ---- */
+
+    /* ---- 终端 begin ---- */
+    "terminal.integrated.shell.windows": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+    /* ---- 终端 end ---- */
+
+    /* ---- 内置 Web 前端 begin ---- */
+    "[html]": {
+        "editor.tabSize": 2
+    },
+    "[css]": {
+        "editor.tabSize": 2
+    },
+    "[javascript]": {
+        "editor.tabSize": 2
+    },
+    "[json]": {
+        "editor.tabSize": 2
+    },
+    "[less]": {
+        "editor.tabSize": 2
+    },
+    "[scss]": {
+        "editor.tabSize": 2
+    },
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    // Vue 配置
+    "[vue]": {
+        "editor.tabSize": 2
+    },
+    "eslint.validate": [
+        "javascript",
+        "javascriptreact",
+        "vue"
+    ],
+    /* ---- 内置 Web 前端 end ---- */
+
+    /* ---- Vim start ---- */
+    // 高亮搜索
+    "vim.hlsearch": true,
+    // 行宽
+    "vim.textwidth": 120,
+    // leader key
+    "vim.leader": ";",
+    // 不使用 Vim Ctrl 相关的快捷键
+    "vim.useCtrlKeys": false,
+    // 使用系统的剪切板
+    "vim.useSystemClipboard": true,
     "vim.insertModeKeyBindings": [
         {
             "before": [
@@ -23,10 +97,21 @@
             ]
         }
     ],
-    "vim.useCtrlKeys": false,
-    "vim.useSystemClipboard": true,
-    "vim.leader": ";",
-    "vim.otherModesKeyBindingsNonRecursive": [
+    "vim.visualModeKeyBindingsNonRecursive": [
+        // 可是模式粘贴时不替换寄存器
+        {
+            "before": [
+                "p",
+            ],
+            "after": [
+                "p",
+                "g",
+                "v",
+                "y"
+            ]
+        }
+    ],
+    "vim.normalModeKeyBindingsNonRecursive": [
         {
             "before": [
                 "leader",
@@ -39,8 +124,58 @@
                     "args": []
                 }
             ]
+        },
+        {
+            "before": [":"],
+            "commands": [
+                "workbench.action.showCommands",
+            ]
+        },
+        {
+            "before": ["k"],
+            "after": ["g", "k"]
+        },
+        {
+            "before": ["j"],
+            "after": ["g", "j"]
         }
     ],
-    "vim.hlsearch": true,
-    "vim.textwidth": 120
+    /* ---- Vim end ---- */
+
+    /* ---- LiveServer begin ---- */
+    "liveServer.settings.donotVerifyTags": true,
+    "liveServer.settings.donotShowInfoMsg": true,
+    "liveServer.settings.port": 5501,
+    /* ---- LiveServer end ---- */
+
+    /* ---- 用户词典 begin ---- */
+    "cSpell.allowCompoundWords": true,
+    "cSpell.userWords": [
+        "cdate",
+        "cnpm",
+        "comparator",
+        "com’s",
+        "docx",
+        "gaoxiaoyuan",
+        "gaoyuan",
+        "gmail",
+        "neighbour",
+        "noam",
+        "nums",
+        "qshell",
+        "recycler",
+        "repo",
+        "repos",
+        "rowspan",
+        "sidenav",
+        "tuanzi",
+        "untracked",
+        "view",
+        "weibo",
+        "xmind",
+        "yahei"
+    ],
+    "workbench.colorTheme": "Visual Studio Light",
+    "window.openFilesInNewWindow": "default"
+    /* ---- 用户词典 end ---- */
 }
