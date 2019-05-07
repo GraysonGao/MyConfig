@@ -28,7 +28,7 @@ if (g:isWindows)
     " 模仿 Windows 的行为, 这一行很重要, 没有这行的话, 最大化经常出问题.
     behave mswin
 elseif (g:isLinux)
-    if g:isGUI
+    if (g:isGUI)
         " Source a global configuration file if available
         if filereadable("/etc/vim/gvimrc.local")
             source /etc/vim/gvimrc.local
@@ -87,10 +87,14 @@ language messages zh_CN.utf-8
 filetype plugin indent on
 " 文件被外部改动后, 自动加载
 set autoread
+" 关于备份文件, 临时文件, undo 文件, 最好的做法是把他们配置到单独的文件夹里
+" 这里暂时都不让生成了, 以后可以再改.
 " 不生成备份文件
 set nobackup
 " 不生成临时文件
 set noswapfile
+" 不生成 undo 文件
+set noundofile
 " ======== 文件相关配置 end ========
 
 " ======== 编辑器配置 start ========
@@ -99,9 +103,9 @@ set number
 " 显示语法高亮
 syntax enable
 syntax on
-" 显示 tab(>---), 换行, 空格(^)
+" 显示 tab(>---), 空格(^), 换行(¬)
 set list
-set listchars=tab:>-,trail:^
+set listchars=tab:>-,trail:^ ",eol:¬
 " 突出显示当前行
 set cursorline
 " 开启自动缩进
@@ -155,7 +159,8 @@ nmap <leader>w :w<cr>
 vnoremap <leader>y "+y
 " 按 <leader>p 将系统寄存器中的内容粘贴出来
 nmap <leader>p "+p
-nmap <leader><space> :nohlsearch<cr>
+" 按 <leader>no 取消搜索高亮, 没错, <leader> 键后面可以跟键序列
+nmap <leader>no :nohlsearch<cr>
 
 " ======== vim-plug 配置 start ========
 call plug#begin('$VIM/vimfiles/vim-plug')
@@ -163,29 +168,29 @@ call plug#begin('$VIM/vimfiles/vim-plug')
 Plug 'altercation/vim-colors-solarized'
 " PaperColor 主题
 Plug 'nlknguyen/papercolor-theme'
-" The Nerd Tree
+" The Nerd Tree, 目录树
 Plug 'scrooloose/nerdtree'
-" UltiSnips
-Plug 'sirver/ultisnips'
-" SuperTab
-Plug 'ervandew/supertab'
-" CtrlP
+" surround, 快速添加成对符号
+Plug 'tpope/vim-surround'
+" CtrlP, 快速查找
 Plug 'ctrlpvim/ctrlp.vim'
-" vim-airline
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-" Emmet
-Plug 'mattn/emmet-vim'
-" fugitive Git 增强插件
-Plug 'tpope/vim-fugitive'
+" UltiSnips, 代码片段
+Plug 'sirver/ultisnips'
 " Multiple Cursors, 多光标编辑
 Plug 'terryma/vim-multiple-cursors'
-" surround
-Plug 'tpope/vim-surround'
-" Tabular, 一个用于代码对其的插件
+" SuperTab, Tab键增强
+Plug 'ervandew/supertab'
+" vim-airline, 底部状态栏增强
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+" fugitive, Git 增强插件
+Plug 'tpope/vim-fugitive'
+" Tabular, 一个用于代码对齐的插件
 Plug 'godlygeek/tabular'
 " Vim Markdown, 依赖 Tabular
 Plug 'plasticboy/vim-markdown'
+" Emmet
+Plug 'mattn/emmet-vim'
 call plug#end()
 " ======== vim-plug 配置 end ========
 
@@ -195,7 +200,7 @@ if (g:isGUI)
 else
     set background=dark
 endif
-" colorscheme solarized
+"colorscheme solarized
 colorscheme PaperColor
 " ======== 主题 end ========
 
@@ -207,15 +212,20 @@ let NERDTreeShowBookmarks=1
 " 设置箭头样式
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
-" <leader>n 切换显示
-map <leader>n :NERDTreeToggle<cr>
-" 退出时自动关闭 NERDTree
-autocmd VimLeave * NERDTreeClose
-" 启动时自动打开 NERDTree
-autocmd VimEnter * NERDTree
+" <leader>h 切换显示
+nmap <leader>h :NERDTreeToggle<cr>
 " ======== 插件配置: nerdtree end ========
 
 " ======== 插件配置: vim-markdown start ========
 " ======== 插件配置: vim-markdown end ========
+
+" ======== 插件配置: surround start ========
+" 给单词两边加上空格
+nmap <leader><space><space> ysiw<space><space>
+" 给单词左边加上空格
+nmap <leader><space>h bi<space><esc>w
+" 给单词右边加上空格
+nmap <leader><space>l ea<space><esc>b
+" ======== 插件配置: surround end ========
 
 
