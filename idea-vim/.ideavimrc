@@ -1,6 +1,6 @@
-" 将leader配置为单引号
-let mapleader="'"
-"按'w保存文件
+" 将leader配置为 ;
+let mapleader=";"
+"按 <leader>w 保存文件
 nmap <leader>w :w<CR>
 "在可视模式下使用p粘贴时不替换寄存器内容
 vnoremap p "_dP
