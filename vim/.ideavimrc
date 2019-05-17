@@ -1,0 +1,29 @@
+" ----------------
+" 高亮显示搜索到的关键字
+set hlsearch
+" 即时搜索
+set incsearch
+" 智能大小写敏感, 只要有一个字母大写, 就大小写敏感, 否则不敏感
+set ignorecase smartcase
+" ----------------
+
+" ----------------
+" 将 kk 映射成 Esc
+inoremap kk <Esc>
+" 在IDEA中, 将 left, down, up, right 映射成 Ctrl+h/j/k/l
+" 防止一次跳多行
+nnoremap k gk
+nnoremap j gj
+" 在可视模式下使用p粘贴时不替换寄存器内容
+vnoremap p "_dP
+
+" 将 leader 配置为 ;
+let mapleader=";"
+" 按 <leader>w 保存文件
+nnoremap <leader>w :w<CR>
+" 可视模式下按 <leader>y 将内容写入系统寄存器
+vnoremap <leader>y "+y
+" 按 <leader>p 将系统寄存器中的内容粘贴出来
+nmap <leader>p "+p
+" ----------------
+

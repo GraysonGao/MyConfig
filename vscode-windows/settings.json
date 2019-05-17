@@ -1,9 +1,21 @@
 {
+    /* ---- 窗口和工作区 start ---- */
+    // 主题
+    "workbench.colorTheme": "Visual Studio Light",
+    // 打开的文件被别的应用删除时, 自动关闭文件
+    "workbench.editor.closeOnFileDelete": true,
+    // 启动时窗口最大化
+    "window.newWindowDimensions": "maximized",
+    // 默认不在新窗口中打开文件
+    "window.openFilesInNewWindow": "off",
+    /* ---- 窗口和工作区 end ---- */
+
     /* ---- 编辑器 begin ---- */
-    // 字体大小。
+    // 字体大小
     "editor.fontSize": 16,
     // 禁止 drag and drop
     "editor.dragAndDrop": false,
+    // 在资源管理器中拖放文件时是否确认
     "explorer.confirmDragAndDrop": false,
     // 显示空白字符
     "editor.renderWhitespace": "boundary",
@@ -13,6 +25,8 @@
     "editor.wordWrapColumn": 120,
     // 代码自动折行后进行缩进
     "editor.wrappingIndent": "indent",
+    // 粘贴时自动格式化
+    "editor.formatOnPaste": true,
     // 当前行的高亮方式, 只显示左侧导航线
     "editor.renderLineHighlight": "gutter",
     // 默认在选中文本中查找
@@ -20,16 +34,12 @@
     // 不显示小地图
     "editor.minimap.enabled": false,
     // 代码提示延迟时长
-    "editor.quickSuggestionsDelay": 100,
+    "editor.quickSuggestionsDelay": 200,
     // 在资源管理器中移除文件时是否弹出确认框
     "explorer.confirmDelete": false,
     // 显示面包屑
     "breadcrumbs.enabled": true,
-    // 默认窗口最大化
-    "window.newWindowDimensions": "maximized",
-    // 打开的文件被别的应用删除时, 自动关闭文件
-    "workbench.editor.closeOnFileDelete": true,
-    /* ---- 窗口和工作区 end ---- */
+    /* ---- 编辑器 end ---- */
 
     /* ---- 文件 begin ---- */
     // 自动保存, 当窗口失去焦点时保存
@@ -86,6 +96,7 @@
     "vim.useCtrlKeys": false,
     // 使用系统的剪切板
     "vim.useSystemClipboard": true,
+    // 将 kk 映射成 Esc
     "vim.insertModeKeyBindings": [
         {
             "before": [
@@ -98,7 +109,7 @@
         }
     ],
     "vim.visualModeKeyBindingsNonRecursive": [
-        // 可是模式粘贴时不替换寄存器
+        // 可视模式粘贴时不替换寄存器
         {
             "before": [
                 "p",
@@ -113,6 +124,7 @@
     ],
     "vim.normalModeKeyBindingsNonRecursive": [
         {
+        // <leader>w 保存
             "before": [
                 "leader",
                 "w"
@@ -125,6 +137,7 @@
                 }
             ]
         },
+        // 按 : 显示命令面板
         {
             "before": [":"],
             "commands": [
@@ -148,7 +161,7 @@
     "liveServer.settings.port": 5501,
     /* ---- LiveServer end ---- */
 
-    /* ---- 用户词典 begin ---- */
+    /* ---- Code Spell Checker begin ---- */
     "cSpell.allowCompoundWords": true,
     "cSpell.userWords": [
         "cdate",
@@ -156,6 +169,7 @@
         "comparator",
         "com’s",
         "docx",
+        "donot",
         "gaoxiaoyuan",
         "gaoyuan",
         "gmail",
@@ -175,7 +189,9 @@
         "xmind",
         "yahei"
     ],
-    "workbench.colorTheme": "Visual Studio Light",
-    "window.openFilesInNewWindow": "default"
-    /* ---- 用户词典 end ---- */
+    /* ---- Code Spell Checker end ---- */
+
+    /* ---- Visual Studio InteliCode begin ---- */
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    /* ---- Visual Studio InteliCode begin ----*/
 }

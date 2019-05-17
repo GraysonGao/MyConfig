@@ -72,10 +72,10 @@ set lazyredraw
 set encoding=utf-8
 " 设置编辑文件时的编码
 set fileencoding=utf-8
-" 设置终端编码
-set termencoding=utf-8
 " 设置 Vim 能识别的编码
 set fileencodings=ucs-bom,utf-8,cp936,gb18030,gb2312,big5,cuc-jp,cuc-kr,latin
+" 设置终端编码
+set termencoding=utf-8
 " 防止特殊符号无法显示
 set ambiwidth=double
 " 解决console输出乱码
@@ -139,11 +139,16 @@ inoremap kk <esc>
 " ctrl-h  光标左移一格
 imap <c-h> <left>
 " ctrl-j  垂直下移一行
-imap <c-j> <down>
+" imap <c-j> <down>
+" 下面这个组合更巧妙, ctrl-o 可以进入临时命令模式, 执行一次 j 即可
+imap <c-j> <c-o>j
 " ctrl-k  垂直上移一行
-imap <c-k> <up>
+" imap <c-k> <up>
+imap <c-k> <c-o>k
 " ctrl-l  光标右移一格
 imap <c-l> <right>
+" shift 回车, 在下一行输入
+"imap <s-cr> <end><cr>
 " 在可视模式下使用p粘贴时不替换寄存器内容, 这里是利用了黑洞寄存器
 vnoremap p "_dP
 " 对于很长的行, vim会自动换行, 此时 j 或者 k 就会一下跳很多行,
@@ -155,12 +160,18 @@ nnoremap j gj
 let mapleader=";"
 " 按 <leader>w 保存文件
 nmap <leader>w :w<cr>
+" 按 <leader>@ 执行上一次的宏
+nnoremap <leader>2 @@
 " 可视模式下按 <leader>y 将内容写入系统寄存器
 vnoremap <leader>y "+y
 " 按 <leader>p 将系统寄存器中的内容粘贴出来
 nmap <leader>p "+p
 " 按 <leader>no 取消搜索高亮, 没错, <leader> 键后面可以跟键序列
 nmap <leader>no :nohlsearch<cr>
+" 按 <leader>k 向上移动半屏
+nnoremap <leader>k <c-u>
+" 按 <leader>j 向下移动半屏
+nnoremap <leader>j <c-d>
 
 " ======== vim-plug 配置 start ========
 call plug#begin('$VIM/vimfiles/vim-plug')
@@ -170,6 +181,12 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'nlknguyen/papercolor-theme'
 " The Nerd Tree, 目录树
 Plug 'scrooloose/nerdtree'
+" 扩展 . 的功能
+Plug 'tpope/vim-repeat'
+" EasyMotion, 移动指令增强
+Plug 'easymotion/vim-easymotion'
+" SuperTab, Tab键增强
+Plug 'ervandew/supertab'
 " surround, 快速添加成对符号
 Plug 'tpope/vim-surround'
 " CtrlP, 快速查找
@@ -178,17 +195,15 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'sirver/ultisnips'
 " Multiple Cursors, 多光标编辑
 Plug 'terryma/vim-multiple-cursors'
-" SuperTab, Tab键增强
-Plug 'ervandew/supertab'
 " vim-airline, 底部状态栏增强
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-" fugitive, Git 增强插件
-Plug 'tpope/vim-fugitive'
 " Tabular, 一个用于代码对齐的插件
 Plug 'godlygeek/tabular'
 " Vim Markdown, 依赖 Tabular
 Plug 'plasticboy/vim-markdown'
+" fugitive, Git 增强插件
+Plug 'tpope/vim-fugitive'
 " Emmet
 Plug 'mattn/emmet-vim'
 call plug#end()
@@ -209,6 +224,8 @@ colorscheme PaperColor
 let NERDTreeShowHidden=1
 " 显示书签
 let NERDTreeShowBookmarks=1
+" NERDTree 大小改为 42 字符宽度, 默认 31
+let NERDTreeWinSize=42
 " 设置箭头样式
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
@@ -217,6 +234,8 @@ nmap <leader>h :NERDTreeToggle<cr>
 " ======== 插件配置: nerdtree end ========
 
 " ======== 插件配置: vim-markdown start ========
+" 禁用折叠
+let g:vim_markdown_folding_disabled = 1
 " ======== 插件配置: vim-markdown end ========
 
 " ======== 插件配置: surround start ========

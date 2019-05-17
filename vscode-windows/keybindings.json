@@ -1,3 +1,4 @@
+// Place your key bindings in this file to override the defaults
 [
     /* ---- Vim begin ---- */
     {
@@ -88,58 +89,19 @@
         "command": "editor.action.quickFix",
         "when": "editorHasCodeActionsProvider && editorTextFocus && !editorReadonly"
     },
+    // 查看引用
     {
-        "key": "ctrl+oem_period",
-        "command": "-editor.action.quickFix",
-        "when": "editorHasCodeActionsProvider && editorTextFocus && !editorReadonly"
-    },
-    // ctrl+r 替换
-    {
-        "key": "ctrl+r",
-        "command": "workbench.action.replaceInFiles"
+        "key": "ctrl+3",
+        "command": "editor.action.referenceSearch.trigger",
+        "when": "editorHasReferenceProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor"
     },
     {
-        "key": "ctrl+r",
-        "command": "-workbench.action.openRecent"
+        "key": "shift+f12",
+        "command": "-editor.action.referenceSearch.trigger",
+        "when": "editorHasReferenceProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor"
     },
     {
-        "key": "ctrl+r",
-        "command": "-extension.vim_ctrl+r",
-        "when": "editorTextFocus && vim.active && vim.use<C-r> && !inDebugRepl"
-    },
-    {
-        "key": "ctrl+r",
-        "command": "-workbench.action.quickOpenNavigateNextInRecentFilesPicker",
-        "when": "inQuickOpen && inRecentFilesPicker"
-    },
-    // ctrl+shift+r 全局替换
-    {
-        "key": "ctrl+shift+r",
-        "command": "editor.action.startFindReplaceAction"
-    },
-    {
-        "key": "ctrl+shift+h",
-        "command": "-workbench.action.replaceInFiles"
-    },
-    // alt+shift+r 重构
-    {
-        "key": "shift+alt+r",
-        "command": "editor.action.refactor",
-        "when": "editorHasCodeActionsProvider && editorTextFocus && !editorReadonly"
-    },
-    {
-        "key": "ctrl+shift+r",
-        "command": "-editor.action.refactor",
-        "when": "editorHasCodeActionsProvider && editorTextFocus && !editorReadonly"
-    },
-    {
-        "key": "ctrl+shift+r",
-        "command": "-workbench.action.quickOpenNavigatePreviousInRecentFilesPicker",
-        "when": "inQuickOpen && inRecentFilesPicker"
-    },
-    {
-        "key": "shift+alt+r",
-        "command": "-revealFileInOS",
-        "when": "!editorFocus"
+        "key": "ctrl+3",
+        "command": "-workbench.action.focusThirdEditorGroup"
     }
 ]
