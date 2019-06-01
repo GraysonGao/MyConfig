@@ -2,7 +2,6 @@
 " Author: Gaoyuan
 " Email: gaoyuan4122@163.com
 " Description: 高原的 vimrc
-" Note: vimrc 中, 用于赋值的 = 右边最好不要有空格, 有些值加了空格无法识别
 " ================================================================
 
 " 关闭兼容模式, 默认情况下, Vim 会以兼容 Vi 的模式运行, 所以一定要关闭.
@@ -69,10 +68,10 @@ endif
 
 " GUI 的设置
 if (g:isGUI)
-    " 关闭工具栏
-    set guioptions-=T
     " 关闭菜单
     set guioptions-=m
+    " 关闭工具栏
+    set guioptions-=T
     " 关闭左侧滚动条
     set guioptions-=L
     " 关闭右侧滚动条
@@ -184,14 +183,13 @@ inoremap kk <esc>
 inoremap <c-h> <left>
 " ctrl-j  垂直下移一行
 " inoremap <c-j> <down>
-" 下面这个组合比较巧妙, ctrl-o 可以进入临时命令模式, 然后执行一次 j
-inoremap <c-j> <c-o>j
+" 下面这个组合比较巧妙, ctrl-o 可以进入临时命令模式, 然后执行一次 gj
+inoremap <c-j> <c-o>gj
 " ctrl-k  垂直上移一行
 " inoremap <c-k> <up>
-inoremap <c-k> <c-o>k
+inoremap <c-k> <c-o>gk
 " ctrl-l  光标右移一格
 inoremap <c-l> <right>
-
 " 按 U 执行 redo
 noremap U <c-r>
 " shift 回车, 在下一行输入
@@ -202,12 +200,14 @@ vnoremap p "_dP
 " 使用 gk,gj 可以避免跳过多行, 但是不方便, 所以做了如下映射.
 nnoremap k gk
 nnoremap j gj
+vnoremap k gk
+vnoremap j gj
 
 " 将 <leader> 键配置为 ';'
 let mapleader=";"
 " 按 <leader>w 保存文件
 nnoremap <leader>w :w<cr>
-" 按 <leader>@ 执行上一次的宏
+" 按 <leader>2 执行上一次的宏
 nnoremap <leader>2 @@
 " 可视模式下按 <leader>y 将内容写入系统寄存器
 vnoremap <leader>y "+y
@@ -219,6 +219,10 @@ nnoremap <leader>no :nohlsearch<cr>
 nnoremap <leader>k <c-u>
 " 按 <leader>j 向下移动半屏
 nnoremap <leader>j <c-d>
+" 按 <leader>q 保存所有的文件, 保存 Session.vim 文件, 退出 Vim
+nnoremap <leader>q :mksession! Session.vim<CR>:wqa<CR>
+" 按 <leader>s 恢复 Session.vim
+nnoremap <leader>s :source Session.vim<CR>
 
 
 " ================================================================
@@ -243,10 +247,8 @@ Plug 'ervandew/supertab'
 Plug 'tpope/vim-surround'
 " CtrlP, 快速查找
 Plug 'ctrlpvim/ctrlp.vim'
-" UltiSnips, 代码片段
+" UltiSnips, 代码片段, 依赖 Python
 Plug 'sirver/ultisnips'
-" Multiple Cursors, 多光标编辑
-Plug 'terryma/vim-multiple-cursors'
 " vim-airline, 底部状态栏增强
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -254,10 +256,6 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'godlygeek/tabular'
 " Vim Markdown, 依赖 Tabular
 Plug 'plasticboy/vim-markdown'
-" fugitive, Git 增强插件
-Plug 'tpope/vim-fugitive'
-" Emmet
-Plug 'mattn/emmet-vim'
 call plug#end()
 
 
@@ -285,6 +283,8 @@ let NERDTreeShowHidden=1
 let NERDTreeShowBookmarks=1
 " NERDTree 大小改为 45 字符宽度, 默认 31
 let NERDTreeWinSize=45
+" 显示简写的 NERDTree 菜单
+let NERDTreeMinimalMenu=1
 " 设置箭头样式
 let g:NERDTreeDirArrowExpandable='▸'
 let g:NERDTreeDirArrowCollapsible='▾'
@@ -294,12 +294,14 @@ let NERDTreeAutoDeleteBuffer=1
 nnoremap <leader>h :NERDTreeToggle<cr>
 
 " ----------------------------------------------------------------
-" vim-markdown
+" CtrlP
 " ----------------------------------------------------------------
-" 禁用折叠
-let g:vim_markdown_folding_disabled=1
-" 禁用 vim-markdown 快捷键
-let g:vim_markdown_no_default_key_mappings=1
+" 默认使用缓冲区搜索模式打开 CtrlP
+let g:ctrlp_cmd='CtrlPBuffer'
+" 将为多字节字符开启输入事件循环, 用于解决中文文件名的问题(实验特性)
+let g:ctrlp_key_loop= 1
+" CtrlP 窗口最大高度和最小高度都是 10, 即固定大小
+let g:ctrlp_match_window='min:10,max:10'
 
 " ----------------------------------------------------------------
 " surround
@@ -307,8 +309,15 @@ let g:vim_markdown_no_default_key_mappings=1
 " 给单词两边加上空格
 nmap <leader><space><space> ysiw<space><space>
 " 给单词左边加上空格
-nmap <leader><space>h bi<space><esc>w
+nmap <leader><space>h wbi<space><esc>w
 " 给单词右边加上空格
 nmap <leader><space>l ea<space><esc>b
 
+" ----------------------------------------------------------------
+" vim-markdown
+" ----------------------------------------------------------------
+" 禁用折叠
+let g:vim_markdown_folding_disabled=1
+" 禁用 VIm-markdown 快捷键
+let g:vim_markdown_no_default_key_mappings=1
 
