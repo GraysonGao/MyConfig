@@ -220,10 +220,13 @@ nnoremap <leader>k <c-u>
 " 按 <leader>j 向下移动半屏
 nnoremap <leader>j <c-d>
 " 按 <leader>q 保存所有的文件, 保存 Session.vim 文件, 退出 Vim
-nnoremap <leader>q :mksession! Session.vim<CR>:wqa<CR>
+nnoremap <leader>q :mksession! Session.vim<cr>:wqa<cr>
 " 按 <leader>s 恢复 Session.vim
-nnoremap <leader>s :source Session.vim<CR>
-
+nnoremap <leader>s :source Session.vim<cr>
+" 按 <leader>nv 编辑 vimrc
+if (g:isWindows)
+    nnoremap <leader>nv :tabe $vim/_vimrc<cr>
+endif
 
 " ================================================================
 " vim-plug 插件
