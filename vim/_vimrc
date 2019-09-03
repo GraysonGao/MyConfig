@@ -80,8 +80,11 @@ if (g:isGUI)
     autocmd GUIEnter * simalt ~x
 endif
 
-" 只在需要的时候才重新绘制界面
+" 只在需要的时候才重新绘制界面(例如宏执行过程中不需要重绘界面)
 set lazyredraw
+" 发生错误时不要响铃, 也不要闪烁
+set noerrorbells
+set belloff=all
 
 " 分割窗口时保持相等的宽/高
 set equalalways
@@ -113,6 +116,11 @@ language messages zh_CN.utf-8
 "
 " 关于备份文件的说明: 备份文件, 临时文件, undo 文件, 最好的做法是把
 " 他们配置到单独的文件夹里, 我这里暂时都不让生成了, 以后可以按需要修改.
+" 例如:
+" set directory=~/.vim/.swp//
+" set backupdir=~/.vim/.backup//
+" set undodir=~/.vim/.undo//
+" 注意最后要有两道//, 表示文件名使用绝对路径
 " ================================================================
 " 自动检测文件类型和缩进格式, 并根据文件类型加载插件
 filetype plugin indent on
@@ -202,6 +210,8 @@ nnoremap k gk
 nnoremap j gj
 vnoremap k gk
 vnoremap j gj
+" 按 gb 跳转到前一个标签页, 默认 gT, 按起来不方便
+nnoremap gb gT
 
 " 将 <leader> 键配置为 ';'
 let mapleader=";"
@@ -274,8 +284,8 @@ else
     set background=dark
 endif
 "colorscheme solarized
-"colorscheme PaperColor
-colorscheme dracula
+colorscheme PaperColor
+"colorscheme dracula
 
 " ----------------------------------------------------------------
 " nerdtree
@@ -299,8 +309,6 @@ nnoremap <leader>h :NERDTreeToggle<cr>
 " ----------------------------------------------------------------
 " CtrlP
 " ----------------------------------------------------------------
-" 默认使用缓冲区搜索模式打开 CtrlP
-let g:ctrlp_cmd='CtrlPBuffer'
 " 将为多字节字符开启输入事件循环, 用于解决中文文件名的问题(实验特性)
 let g:ctrlp_key_loop= 1
 " CtrlP 窗口最大高度和最小高度都是 10, 即固定大小
