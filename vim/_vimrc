@@ -73,12 +73,10 @@ set backspace=indent,eol,start
 set showcmd
 " 在命令模式下按 Tab 键，展示候选词
 set wildmenu
-
 " 竖直split时,在右边开启
 set splitright
 " 水平split时,在下边开启
 set splitbelow
-
 " 从 default.vim 中拷贝的配置
 if has('langmap') && exists('+langremap')
   " Prevent that the langmap option applies to characters that result from a
