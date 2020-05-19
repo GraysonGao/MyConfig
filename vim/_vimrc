@@ -4,13 +4,13 @@
 " Description: 高原的 vimrc
 " ================================================================
 
-" 关闭兼容模式, 默认情况下, Vim 会以兼容 Vi 的模式运行, 所以一定要关闭.
+" 关闭兼容模式，默认情况下，Vim 会以兼容 Vi 的模式运行，所以一定要关闭
 set nocompatible
 
 " ================================================================
 " 环境判断
 " ================================================================
-" 判断是 Windows 还是 Linux.
+" 判断是 Windows 还是 Linux
 let g:isWindows=0
 let g:isLinux=0
 if (has("win32") || has("win64"))
@@ -18,7 +18,7 @@ if (has("win32") || has("win64"))
 else
     let g:isLinux=1
 endif
-" 判断是终端还是 gVim
+" 判断是终端还是 gVim。
 let g:isGUI=1
 if has("gui_running")
     let g:isGUI=1
@@ -26,14 +26,15 @@ else
     let g:isGUI=0
 endif
 
+
 " ================================================================
 " UI 和基本配置
 " ================================================================
 if (g:isWindows)
-    " 模仿 Windows 的行为, 没有这行的话, 最大化经常出问题.
-    behave mswin
     " 设置字体
     set guifont=Consolas:h14
+    " 模仿 Windows 的行为，没有这行的话，最大化经常出问题。
+    behave mswin
 elseif (g:isLinux)
     " 设置字体
     set guifont=Consolas\ 14
@@ -43,7 +44,8 @@ elseif (g:isLinux)
         set autochdir                  " 自动切换工作目录
     endif
 endif
-" GUI 的设置
+
+" GUI 相关的设置
 if (g:isGUI)
     " 关闭菜单
     set guioptions-=m
@@ -53,14 +55,17 @@ if (g:isGUI)
     set guioptions-=L
     " 关闭右侧滚动条
     set guioptions-=r
+    " 标签页使用文本显示
+    "set guioptions-=e
     " 启动时最大化
     autocmd GUIEnter * simalt ~x
 endif
+
 " 设置鼠标可用
 set mouse=a
-" 只在需要的时候才重新绘制界面(例如宏执行过程中不需要重绘界面)
+" 只在需要的时候才重新绘制界面（例如宏执行过程中不需要重绘界面）
 set lazyredraw
-" 发生错误时不要响铃, 也不要闪烁
+" 发生错误时不要响铃，也不要闪烁
 set noerrorbells
 set belloff=all
 " 命令行历史记录数量
@@ -73,10 +78,15 @@ set backspace=indent,eol,start
 set showcmd
 " 在命令模式下按 Tab 键，展示候选词
 set wildmenu
-" 竖直split时,在右边开启
+" 垂直滚动时，光标距离顶部/底部的行数
+set scrolloff=5
+
 set splitright
 " 水平split时,在下边开启
 set splitbelow
+" 分割窗口时保持相等的宽/高
+set equalalways
+
 " 从 default.vim 中拷贝的配置
 if has('langmap') && exists('+langremap')
   " Prevent that the langmap option applies to characters that result from a
@@ -84,9 +94,6 @@ if has('langmap') && exists('+langremap')
   " compatible).
   set nolangremap
 endif
-" 垂直滚动时，光标距离顶部/底部的行数
-set scrolloff=5
-
 " Do not recognize octal numbers for Ctrl-A and Ctrl-X, most users find it
 " confusing.
 set nrformats-=octal
@@ -103,8 +110,6 @@ syntax on
 " 显示 tab(>---), 空格(^), 换行(¬)
 set list
 set listchars=tab:>-,trail:^ ",eol:¬
-" Show @@@ in the last line if it is truncated.
-set display=truncate
 " 突出显示当前行
 set cursorline
 " 开启自动缩进
@@ -138,7 +143,7 @@ set encoding=utf-8
 set fileencoding=utf-8
 " 设置 Vim 能识别的编码
 set fileencodings=ucs-bom,utf-8,cp936,gb18030,gb2312,big5,cuc-jp,cuc-kr,latin
-" 设置终端模式(非 GUI 模式)下的编码
+" 设置终端模式（非 GUI 模式）下的编码
 set termencoding=utf-8
 " 防止特殊符号无法显示
 set ambiwidth=double
@@ -157,7 +162,6 @@ language messages zh_CN.utf-8
 " set undodir=~/.vim/.undo//
 " 注意最后要有两道//, 表示文件名使用绝对路径
 " ================================================================
-"
 " 自动检测文件类型和缩进格式, 并根据文件类型加载插件
 filetype plugin indent on
 " 文件被外部改动后, 自动加载
@@ -168,6 +172,7 @@ set nobackup
 set noswapfile
 " 不生成 undo 文件
 set noundofile
+
 
 " ================================================================
 " 搜索和匹配
@@ -189,11 +194,11 @@ set ignorecase smartcase
 inoremap kk <esc>
 " ctrl-h  光标左移一格
 inoremap <c-h> <left>
-" ctrl-j  垂直下移一行
+" ctrl-j  光标下移一行
 inoremap <c-j> <down>
-" 下面这个组合比较巧妙, ctrl-o 可以进入临时命令模式, 然后执行一次 gj
+" 下面这个组合同样可以实现下移一行, ctrl-o 可以进入临时命令模式, 然后执行一次 gj
 " inoremap <c-j> <c-o>gj
-" ctrl-k  垂直上移一行
+" ctrl-k  光标上移一行
 inoremap <c-k> <up>
 " inoremap <c-k> <c-o>gk
 " ctrl-l  光标右移一格
@@ -202,12 +207,9 @@ inoremap <c-l> <right>
 noremap U <c-r>
 " shift 回车, 在下一行输入
 inoremap <s-cr> <end><cr>
-" 在可视模式下使用p粘贴时不替换寄存器内容, 这里是利用了黑洞寄存器
+" 在可视模式下使用p粘贴时不替换寄存器内容, 这里是利用了黑洞寄存器，
+" 将选中内容删除到黑洞寄存器，然后再执行大写P，在行尾时会有点bug，但基本满足需求。
 vnoremap p "_dP
-" ctrl-v 将系统寄存器的内容粘贴出来
-map <c-v> "+gP
-" ctrl-q 代替原来的 ctrl-v，即块选择模式
-noremap <c-q> <c-v>
 " 对于很长的行, vim会自动换行, 此时 j 或者 k 就会一下跳很多行,
 " 使用 gk,gj 可以避免跳过多行, 但是不方便, 所以做了如下映射.
 nnoremap k gk
@@ -217,6 +219,21 @@ vnoremap j gj
 " 按 gb 跳转到前一个标签页, 默认 gT, 按起来不方便
 nnoremap gb gT
 
+" ctrl-v 将系统寄存器的内容粘贴出来
+" 加一个 g 表示在光标前插入，然后光标在插入内容之后。
+if (g:isWindows)
+    " 下面的方案是拷贝 gVim 默认配置，然后稍作修改
+    nmap <c-v> "+gp
+    cmap <c-v> <c-r>+
+    if 1
+        exe 'inoremap <script> <c-v> <c-g>u' . paste#paste_cmd['i']
+        exe 'vnoremap <script> <c-v> ' . paste#paste_cmd['v']
+    endif
+    " ctrl-q 代替原来的 ctrl-v，即 块选择模式
+    noremap <c-q> <c-v>
+endif
+
+
 " 将 <leader> 键配置为 ';'
 let mapleader=";"
 " 按 <leader>w 保存文件
@@ -225,7 +242,7 @@ nnoremap <leader>w :w<cr>
 nnoremap <leader>2 @@
 " 可视模式下按 <leader>y 将内容写入系统寄存器
 vnoremap <leader>y "+y
-" 可视模式下按 <leader>x 将内容写入系统寄存器
+" 可视模式下按 <leader>x 将内容写入（剪切到）系统寄存器
 vnoremap <leader>x "+x
 " 按 <leader>p 将系统寄存器中的内容粘贴出来
 nnoremap <leader>p "+p
@@ -244,12 +261,15 @@ if (g:isWindows)
     nnoremap <leader>nv :tabe $vim/_vimrc<cr>
 endif
 
+
 " ================================================================
 " vim-plug 插件
 " ================================================================
 call plug#begin('$VIM/vimfiles/vim-plug')
 " PaperColor 主题(亮/暗)
 Plug 'nlknguyen/papercolor-theme'
+" MoloKai 主题（暗色）
+Plug 'tomasr/molokai'
 " Dracula 主题(暗色), 后面的配置表示将主题装在 dracula 文件夹下
 Plug 'dracula/vim', { 'as': 'dracula' }
 " The Nerd Tree, 目录树
@@ -259,19 +279,21 @@ Plug 'tpope/vim-repeat'
 " EasyMotion, 移动指令增强
 Plug 'easymotion/vim-easymotion'
 " SuperTab, Tab键增强
-Plug 'ervandew/supertab'
+" Plug 'ervandew/supertab'
 " surround, 快速添加成对符号
 Plug 'tpope/vim-surround'
 " CtrlP, 快速查找
 Plug 'ctrlpvim/ctrlp.vim'
 " UltiSnips, 代码片段, 依赖 Python
 Plug 'sirver/ultisnips'
-" vim-airline, 底部状态栏增强
+" vim-airline, 底部状态栏增强??,??,
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 " Tabular, 一个用于代码对齐的插件
 Plug 'godlygeek/tabular'
-" Vim Markdown, 依赖 Tabular
+" 支持 Github Flavor 的 Vim Markdown，可惜性能太差了。表格格式化需要依赖 tabular
+" Plug 'gabrielelana/vim-markdown'
+" 老牌 Vim Markdown，表格格式化需要依赖 tabular
 Plug 'plasticboy/vim-markdown'
 call plug#end()
 
@@ -287,8 +309,8 @@ if (g:isGUI)
 else
     set background=dark
 endif
-"colorscheme PaperColor
-colorscheme dracula
+colorscheme PaperColor
+" colorscheme dracula
 
 " ----------------------------------------------------------------
 " nerdtree
@@ -312,7 +334,7 @@ nnoremap <leader>h :NERDTreeToggle<cr>
 " ----------------------------------------------------------------
 " CtrlP
 " ----------------------------------------------------------------
-" 将为多字节字符开启输入事件循环, 用于解决中文文件名的问题(实验特性)
+" 将为多字节字符开启输入事件循环, 用于解决中文文件名的问题（实验特性）
 let g:ctrlp_key_loop= 1
 " CtrlP 窗口最大高度和最小高度都是 10, 即固定大小
 let g:ctrlp_match_window='min:10,max:10'
@@ -328,10 +350,23 @@ nmap <leader><space>h wbi<space><esc>w
 nmap <leader><space>l ea<space><esc>b
 
 " ----------------------------------------------------------------
-" vim-markdown
+" gabrielelana/vim-markdown
 " ----------------------------------------------------------------
-" 禁用折叠
-let g:vim_markdown_folding_disabled=1
-" 禁用 vim-markdown 快捷键
-let g:vim_markdown_no_default_key_mappings=1
+"let g:markdown_include_jekyll_support = 0
+"let g:markdown_enable_spell_checking = 0
+
+" ----------------------------------------------------------------
+" plasticboy/vim-markdown
+" ----------------------------------------------------------------
+let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_auto_insert_bullets = 0
+let g:vim_markdown_new_list_item_indent = 0
+let g:vim_markdown_toc_autofit = 1
+" 格式化表格
+nnoremap <leader>mf :TableFormat<cr>
+" 显示 Toc
+nnoremap <leader>mt :Toc<cr>
+
+
+
 
