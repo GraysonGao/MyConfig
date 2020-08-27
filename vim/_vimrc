@@ -268,7 +268,7 @@ endif
 call plug#begin('$VIM/vimfiles/vim-plug')
 " PaperColor 主题(亮/暗)
 Plug 'nlknguyen/papercolor-theme'
-" MoloKai 主题（暗色）
+" Molokai 主题（暗色）
 Plug 'tomasr/molokai'
 " Dracula 主题(暗色), 后面的配置表示将主题装在 dracula 文件夹下
 Plug 'dracula/vim', { 'as': 'dracula' }
@@ -278,23 +278,21 @@ Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-repeat'
 " EasyMotion, 移动指令增强
 Plug 'easymotion/vim-easymotion'
-" SuperTab, Tab键增强
-" Plug 'ervandew/supertab'
 " surround, 快速添加成对符号
 Plug 'tpope/vim-surround'
-" CtrlP, 快速查找
-Plug 'ctrlpvim/ctrlp.vim'
 " UltiSnips, 代码片段, 依赖 Python
 Plug 'sirver/ultisnips'
-" vim-airline, 底部状态栏增强??,??,
+" vim-airline, 底部状态栏增强
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-" Tabular, 一个用于代码对齐的插件
-Plug 'godlygeek/tabular'
-" 支持 Github Flavor 的 Vim Markdown，可惜性能太差了。表格格式化需要依赖 tabular
-" Plug 'gabrielelana/vim-markdown'
 " 老牌 Vim Markdown，表格格式化需要依赖 tabular
 Plug 'plasticboy/vim-markdown'
+" Tabular, 一个用于代码对齐的插件
+Plug 'godlygeek/tabular'
+" 快速查找文件名，缓冲区，依赖 Python
+Plug 'Yggdroot/LeaderF'
+" 在多个文件内查找文本，是对系统中的 ripgrep/ack/agrep 等工具的封装
+Plug 'mhinz/vim-grepper'
 call plug#end()
 
 
@@ -350,12 +348,6 @@ nmap <leader><space>h wbi<space><esc>w
 nmap <leader><space>l ea<space><esc>b
 
 " ----------------------------------------------------------------
-" gabrielelana/vim-markdown
-" ----------------------------------------------------------------
-"let g:markdown_include_jekyll_support = 0
-"let g:markdown_enable_spell_checking = 0
-
-" ----------------------------------------------------------------
 " plasticboy/vim-markdown
 " ----------------------------------------------------------------
 let g:vim_markdown_folding_disabled = 1
@@ -367,6 +359,16 @@ nnoremap <leader>mf :TableFormat<cr>
 " 显示 Toc
 nnoremap <leader>mt :Toc<cr>
 
+" ----------------------------------------------------------------
+" LeaderF
+" ----------------------------------------------------------------
 
+
+" ----------------------------------------------------------------
+" mhinz/vim-grepper
+" ----------------------------------------------------------------
+runtime plugin/grepper.vim    " initialize g:grepper with default values
+let g:grepper.tools = ['rg', 'ag', 'ack', 'ack-grep', 'findstr']
+let g:grepper.dir = 'repo,filecwd'
 
 
