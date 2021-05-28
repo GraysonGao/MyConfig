@@ -148,7 +148,7 @@ set termencoding=utf-8
 " 防止特殊符号无法显示
 set ambiwidth=double
 " 解决 console 输出乱码
-language messages zh_CN.utf-8
+" language messages zh_CN.utf-8
 
 
 " ================================================================
@@ -229,9 +229,9 @@ if (g:isWindows)
         exe 'inoremap <script> <c-v> <c-g>u' . paste#paste_cmd['i']
         exe 'vnoremap <script> <c-v> ' . paste#paste_cmd['v']
     endif
-    " ctrl-q 代替原来的 ctrl-v，即 块选择模式
-    noremap <c-q> <c-v>
 endif
+" ctrl-q 代替原来的 ctrl-v，即 块选择模式
+noremap <c-q> <c-v>
 
 
 " 将 <leader> 键配置为 ';'
@@ -259,13 +259,19 @@ nnoremap <leader>s :source Session.vim<cr>
 " 按 <leader>nv 编辑 vimrc
 if (g:isWindows)
     nnoremap <leader>nv :tabe $vim/_vimrc<cr>
+elseif (g:isLinux)
+    nnoremap <leader>nv :tabe ~/.vimrc<cr>
 endif
 
 
 " ================================================================
 " vim-plug 插件
 " ================================================================
-call plug#begin('$VIM/vimfiles/vim-plug')
+if (g:isWindows)
+    call plug#begin('$VIM/vimfiles/vim-plug')
+elseif (g:isLinux)
+    call plug#begin('~/.vim/plugged')
+endif
 " PaperColor 主题(亮/暗)
 Plug 'nlknguyen/papercolor-theme'
 " Molokai 主题（暗色）
@@ -293,6 +299,9 @@ Plug 'godlygeek/tabular'
 Plug 'Yggdroot/LeaderF'
 " 在多个文件内查找文本，是对系统中的 ripgrep/ack/agrep 等工具的封装
 Plug 'mhinz/vim-grepper'
+if (g:isLinux)
+    Plug 'vim-scripts/bash-support.vim'
+endif
 call plug#end()
 
 
@@ -304,11 +313,11 @@ call plug#end()
 " ----------------------------------------------------------------
 if (g:isGUI)
     set background=light
+    colorscheme PaperColor
 else
     set background=dark
+    colorscheme dracula
 endif
-colorscheme PaperColor
-" colorscheme dracula
 
 " ----------------------------------------------------------------
 " nerdtree
@@ -318,7 +327,11 @@ let NERDTreeShowHidden=1
 " 显示书签
 let NERDTreeShowBookmarks=1
 " NERDTree 大小改为 45 字符宽度, 默认 31
-let NERDTreeWinSize=45
+if (g:isWindows)
+    let NERDTreeWinSize=45
+else
+    let NERDTreeWinSize=36
+endif
 " 显示简写的 NERDTree 菜单
 let NERDTreeMinimalMenu=1
 " 设置箭头样式
@@ -370,5 +383,6 @@ nnoremap <leader>mt :Toc<cr>
 runtime plugin/grepper.vim    " initialize g:grepper with default values
 let g:grepper.tools = ['rg', 'ag', 'ack', 'ack-grep', 'findstr']
 let g:grepper.dir = 'repo,filecwd'
+
 
 
