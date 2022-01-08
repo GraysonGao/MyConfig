@@ -1,4 +1,6 @@
 " ----------------
+" 高亮显示匹配的括号
+set showmatch
 " 高亮显示搜索到的关键字
 set hlsearch
 " 即时搜索
@@ -16,6 +18,7 @@ nnoremap k gk
 nnoremap j gj
 " 在可视模式下使用p粘贴时不替换寄存器内容
 vnoremap p "_dP
+nnoremap gb gT
 
 " 将 leader 配置为 ;
 let mapleader=";"
@@ -24,6 +27,7 @@ nnoremap <leader>w :w<CR>
 " 可视模式下按 <leader>y 将内容写入系统寄存器
 vnoremap <leader>y "+y
 " 按 <leader>p 将系统寄存器中的内容粘贴出来
-nmap <leader>p "+p
+nnoremap <leader>p "+p
 " ----------------
+
 
