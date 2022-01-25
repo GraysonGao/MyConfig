@@ -1,5 +1,15 @@
+set ignorecase
+set smartcase
+
 inoremap kk <Esc>
 inoremap <c-h> <Left>
 inoremap <c-j> <Down>
 inoremap <c-k> <Up>
 inoremap <c-l> <Right>
+
+vnoremap p "_dP
+nnoremap gb gT
+
+let mapleader=";"
+nnoremap <leader>w :w<cr>
+nnoremap <leader>no :nohlsearch<cr>
