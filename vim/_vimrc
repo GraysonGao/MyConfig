@@ -203,6 +203,8 @@ inoremap <c-k> <up>
 " inoremap <c-k> <c-o>gk
 " ctrl-l  光标右移一格
 inoremap <c-l> <right>
+" ctrl-d 删除前一个字符，在 Vim 默认快捷键是 ctrl-h，但是 ctrl-h 被我用了，所以改了一下。
+inoremap <c-d> <delete>
 " 按 U 执行 redo
 noremap U <c-r>
 " shift 回车, 在下一行输入
